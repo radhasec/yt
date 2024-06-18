@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download YouTube Content</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Download YouTube Content</h1>
+        <form id="downloadForm">
+            <label for="videoUrl">YouTube Video/Playlist URL:</label>
+            <input type="text" id="videoUrl" name="videoUrl" required>
+
+            <label for="outputName">Output File Name (without extension):</label>
+            <input type="text" id="outputName" name="outputName" required>
+
+            <label for="downloadType">Download Type:</label>
+            <select id="downloadType" name="downloadType" onchange="toggleDownloadOptions()">
+                <option value="audio">Audio</option>
+                <option value="video">Video</option>
+                <option value="playlist">Playlist</option>
+            </select>
+
+            <div class="resolution-group hidden" id="resolutionGroup">
+                <label for="resolution">Select Resolution:</label>
+                <select id="resolution" name="resolution">
+                    <option value="best">Best Quality</option>
+                    <option value="1080p">1080p</option>
+                    <option value="720p">720p</option>
+                    <option value="480p">480p</option>
+                    <option value="360p">360p</option>
+                </select>
+            </div>
+
+            <div class="format-group hidden" id="formatGroup">
+                <label for="format">Select Format:</label>
+                <select id="format" name="format">
+                    <option value="mp4">MP4</option>
+                    <option value="webm">WEBM</option>
+                    <option value="mkv">MKV</option>
+                </select>
+            </div>
+
+            <div id="audioOptions">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="trimAudio" onclick="toggleTrimOptions()">
+                    <label for="trimAudio">Trim Audio</label>
+                </div>
+
+                <div class="hidden" id="trimOptions">
+                    <label for="startTime">Start Time (hh:mm:ss):</label>
+                    <input type="text" id="startTime" name="startTime" required>
+
+                    <label for="endTime">End Time (hh:mm:ss):</label>
+                    <input type="text" id="endTime" name="endTime" required>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="customThumbnail" onclick="toggleThumbnailOptions()">
+                    <label for="customThumbnail">Custom Thumbnail</label>
+                </div>
+
+                <div class="hidden" id="thumbnailOptions">
+                    <label for="imageUrl">Custom Image URL:</label>
+                    <input type="text" id="imageUrl" name="imageUrl" required>
+                </div>
+            </div>
+
+            <button type="button" onclick="generateCommands()">Generate Commands</button>
+        </form>
+
+        <h2>Generated Commands</h2>
+        <pre id="commands"></pre>
+
+        <div class="copy-button">
+            <button onclick="copyToClipboard()">Copy to Clipboard</button>
+        </div>
+    </div>
+    <div class="footer">
+        Made with ❤️ in India
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
